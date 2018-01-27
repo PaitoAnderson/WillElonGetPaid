@@ -9,9 +9,19 @@
 
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
-    <body>
-        <h1>Will Elon Musk meet his Tesla targets and get paid?</h1>
+    <body class="container">
+        <h1 class="question">Do you think Elon Musk meet his Tesla targets and get paid?</h1>
 
+        <div class="segmented-control">
+            <div class="segmented-control-item">
+                <input class="segmented-control-input" type="radio" value="1" name="option" id="option-1">
+                <label class="segmented-control-label segmented-control-label-left" for="option-1">I doubt it</label>
+            </div>
+            <div class="segmented-control-item">
+                <input class="segmented-control-input" type="radio" value="2" name="option" id="option-2" >
+                <label class="segmented-control-label segmented-control-label-right" for="option-2">I think so</label>
+            </div>
+        </div>
 
         <script src="bundle.js"></script>
     </body>
