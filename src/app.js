@@ -1,3 +1,5 @@
+require('./style.css');
+
 var voteNoElement = document.getElementById('option-1');
 var voteYesElement = document.getElementById('option-2');
 
