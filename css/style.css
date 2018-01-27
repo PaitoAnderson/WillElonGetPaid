@@ -41,19 +41,23 @@
     cursor: pointer;
 }
 
-.segmented-control-label-left {
+.segmented-control-item.left label,
+.segmented-control-results-item.left label {
     border-radius: 8px 0 0 8px;
 
     background: linear-gradient(to right, #FA7E54, #D1337F);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.segmented-control-label-right {
+.segmented-control-item.right label,
+.segmented-control-results-item.right label {
     border-radius: 0 8px 8px 0;
 
     background: linear-gradient(to right, #31BDDA, #25DE4F);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -65,3 +69,33 @@
     background: #eee;
     color: #333; 
 }*/
+
+.segmented-control-results {
+    display: table;
+    width: 100%;
+    margin: 2em 0;
+    padding: 0;
+}
+
+.segmented-control-results-item {
+    display: table-cell;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.segmented-control-results-label {
+    display: block;
+    margin: 0 -2px -2px 0; /* -1px margin removes double-thickness borders between items */
+    padding: .25em .25em;
+
+    border: 2px solid #DBDBDB;
+
+    font: 26px/1.5 sans-serif; 
+    font-weight: 600;
+    text-align: center;  
+}
+
+.segmented-control-results-item.left {
+    background-color: #DBDBDB;
+}

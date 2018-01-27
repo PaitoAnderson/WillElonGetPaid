@@ -13,13 +13,22 @@
         <h1 class="question">Do you think Elon Musk meet his Tesla targets and get paid?</h1>
 
         <div class="segmented-control">
-            <div class="segmented-control-item">
-                <input class="segmented-control-input" type="radio" value="1" name="option" id="option-1">
-                <label class="segmented-control-label segmented-control-label-left" for="option-1">I doubt it</label>
+            <div class="segmented-control-item left">
+                <input class="segmented-control-input" type="radio" value="1" name="vote" id="option-1">
+                <label class="segmented-control-label" for="option-1">I doubt it</label>
             </div>
-            <div class="segmented-control-item">
-                <input class="segmented-control-input" type="radio" value="2" name="option" id="option-2" >
-                <label class="segmented-control-label segmented-control-label-right" for="option-2">I think so</label>
+            <div class="segmented-control-item right">
+                <input class="segmented-control-input" type="radio" value="2" name="vote" id="option-2" >
+                <label class="segmented-control-label" for="option-2">I think so</label>
+            </div>
+        </div>
+
+        <div class="segmented-control-results">
+            <div class="segmented-control-results-item left" style="width: 56%">
+                <label class="segmented-control-results-label">I doubt it<br/>77%</label>
+            </div>
+            <div class="segmented-control-results-item right">
+                <label class="segmented-control-results-label">I think so<br />23%</label>
             </div>
         </div>
 
