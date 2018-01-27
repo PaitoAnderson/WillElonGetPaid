@@ -1,0 +1,15 @@
+{
+  "name": "will-elon-get-paid",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Paito Anderson",
+  "homepage": "https://willelongetpaid.com/",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "webpack-dev-server --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "webpack":"3.10.0",
+    "webpack-dev-server": "2.9.7"
+  }
+}
