@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
@@ -20,6 +21,7 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.js']
       },
     plugins: [
+        new webpack.optimize.UglifyJsPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             inlineSource: '.(js|css)$',
