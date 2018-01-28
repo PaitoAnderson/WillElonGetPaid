@@ -1,5 +1,24 @@
 require('./style.css');
 
+/*import * as firebase from 'firebase'
+// Required for side-effects
+require("firebase/firestore");
+
+firebase.initializeApp({
+    apiKey: 'AIzaSyBiZYCgi9u5Z4n0132SFhq9sTulPYi2io0',
+    authDomain: 'will-elon-get-paid.firebaseapp.com',
+    projectId: 'will-elon-get-paid'
+});
+
+// Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+
+db.collection("votes").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+    });
+});*/
+
 var voteNoElement = document.getElementById('option-1');
 var voteYesElement = document.getElementById('option-2');
 
