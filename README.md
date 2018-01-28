@@ -4,4 +4,4 @@ Development: `yarn run start:dev`
 
 Compile: `yarn run build`
 
-Release: `firebase deploy`
+Release: `yarn run deploy`
