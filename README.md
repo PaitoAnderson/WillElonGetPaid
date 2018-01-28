@@ -1,4 +1,7 @@
 # Will Elon Get Paid?
 
-Start Development Server:
-`yarn run start:dev`
+Development: `yarn run start:dev`
+
+Compile: `yarn run build`
+
+Release: `firebase deploy`
