@@ -1,5 +1,3 @@
-require('./style.css');
-
 import * as firebase from 'firebase/app';
 // Required for side-effects
 require("firebase/firestore");
