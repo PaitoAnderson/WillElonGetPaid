@@ -46,6 +46,8 @@ function vote(value: boolean) {
 
             var segmentedControl = document.querySelector('.segmented-control') as HTMLDivElement;
             segmentedControl.className = 'segmented-control-results';
+
+            document.getElementById('votes-collected').innerHTML = `${data.numVotes} votes collected`;
         });
     })
     .catch(function(error) {

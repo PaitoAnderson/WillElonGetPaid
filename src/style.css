@@ -78,3 +78,8 @@
 .segmented-control-results .segmented-control-item.left {
     background-color: #DBDBDB;
 }
+
+#votes-collected {
+    text-align: center;
+    color: #A0A0A0
+}
