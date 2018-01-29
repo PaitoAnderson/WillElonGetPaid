@@ -22,6 +22,7 @@ module.exports = {
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),
         new HtmlWebpackPlugin({
+            favicon: './src/favicon.ico',
             template: './src/index.html',
             inlineSource: '.(js|css)$',
         }),
