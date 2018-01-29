@@ -11,11 +11,15 @@ firebase.initializeApp({
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
-// Voting Callbacks
-var voteYesElement = document.getElementById('option-1');
-var voteNoElement = document.getElementById('option-2');
-voteYesElement.onclick = () => vote(true);
-voteNoElement.onclick = () => vote(false);
+if (document.cookie.indexOf('voted=1') !== -1) {
+    displayVotes();
+} else {
+    // Voting Callbacks
+    var voteYesElement = document.getElementById('option-1');
+    var voteNoElement = document.getElementById('option-2');
+    voteYesElement.onclick = () => vote(true);
+    voteNoElement.onclick = () => vote(false);
+}
 
 function vote(value: boolean) {
 
@@ -29,29 +33,35 @@ function vote(value: boolean) {
         value,
     })
     .then(function(docRef) {
-        // Get Vote Counts
-        db.doc('votes/totals').get().then((totals) => {
+        displayVotes();
 
-            const data = totals.data();
-            const percent = Math.abs(data.numVotesYes / data.numVotes) * 100;
-
-            const displayedPercentage = Math.min(Math.max(30, percent), 70);
-            (document.querySelector('.segmented-control-item.left') as HTMLDivElement).style.width = `${displayedPercentage}%`;
-
-            var voteOptions = document.getElementsByClassName('segmented-control-label') as HTMLCollectionOf<HTMLLabelElement>;
-            voteOptions[0].innerHTML = `I think so<br />${Math.round(percent)}%`;
-            voteOptions[1].innerHTML = `I doubt it<br />${Math.round(Math.abs(percent - 100))}%`;
-
-            var segmentedControl = document.querySelector('.segmented-control') as HTMLDivElement;
-            segmentedControl.className = 'segmented-control-results';
-
-            document.getElementById('votes-collected').innerHTML = `${data.numVotes} votes collected`;
-        });
+        document.cookie = "voted=1";
     })
     .catch(function(error) {
         enableInputs();
 
         console.error("Error adding document: ", error);
+    });
+}
+
+function displayVotes() {
+    // Get Vote Counts
+    db.doc('votes/totals').get().then((totals) => {
+
+        const data = totals.data();
+        const percent = Math.abs(data.numVotesYes / data.numVotes) * 100;
+
+        const displayedPercentage = Math.min(Math.max(30, percent), 70);
+        (document.querySelector('.segmented-control-item.left') as HTMLDivElement).style.width = `${displayedPercentage}%`;
+
+        var voteOptions = document.getElementsByClassName('segmented-control-label') as HTMLCollectionOf<HTMLLabelElement>;
+        voteOptions[0].innerHTML = `I think so<br />${Math.round(percent)}%`;
+        voteOptions[1].innerHTML = `I doubt it<br />${Math.round(Math.abs(percent - 100))}%`;
+
+        var segmentedControl = document.querySelector('.segmented-control') as HTMLDivElement;
+        segmentedControl.className = 'segmented-control-results';
+
+        document.getElementById('votes-collected').innerHTML = `${data.numVotes} votes collected`;
     });
 }
 
