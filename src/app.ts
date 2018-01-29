@@ -13,29 +13,16 @@ firebase.initializeApp({
 // Initialize Cloud Firestore through Firebase
 var db = firebase.firestore();
 
-// Get Vote Counts
-/*db.collection("votes").get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-        console.log(doc.id, doc.data());
-    });
-});*/
-
-var voteNoElement = document.getElementById('option-1');
-var voteYesElement = document.getElementById('option-2');
-
-voteNoElement.onclick = voteNo;
-voteYesElement.onclick = voteYes;
-
-function voteNo() {
-    vote(false);
-}
-
-function voteYes() {
-   vote(true);
-}
+// Voting Callbacks
+var voteYesElement = document.getElementById('option-1');
+var voteNoElement = document.getElementById('option-2');
+voteYesElement.onclick = () => vote(true);
+voteNoElement.onclick = () => vote(false);
 
 function vote(value: boolean) {
-    removeByClassName('segmented-control-input');
+
+    // Prevent further voting
+    disableInputs();
 
     // Set Vote
     db.collection("votes").add({
@@ -45,10 +32,34 @@ function vote(value: boolean) {
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
+
+        // Get Vote Counts
+        db.doc('votes/totals').get().then((totals) => {
+
+            const data = totals.data();
+            const percent = Math.abs(data.numVotesYes / data.numVotes) * 100;
+
+            console.log(percent);
+
+            (document.querySelector('.segmented-control-item.left') as HTMLDivElement).style.width = `${percent}%`;
+
+        });
     })
     .catch(function(error) {
+        enableInputs();
+
         console.error("Error adding document: ", error);
     });
+}
+
+function disableInputs() {
+    (document.getElementById("option-1") as HTMLInputElement).disabled = true;
+    (document.getElementById("option-2") as HTMLInputElement).disabled = true;
+}
+
+function enableInputs() {
+    (document.getElementById("option-1") as HTMLInputElement).disabled = false;
+    (document.getElementById("option-2") as HTMLInputElement).disabled = false;
 }
 
 function removeByClassName(className: string) {
