@@ -46,7 +46,7 @@ function vote(value: boolean) {
 
 function displayVotes() {
     // Get Vote Counts
-    db.doc('votes/totals').get().then((totals) => {
+    db.doc('votes/totals').onSnapshot((totals) => {
 
         const data = totals.data();
         const percent = Math.abs(data.numVotesYes / data.numVotes) * 100;
@@ -58,8 +58,10 @@ function displayVotes() {
         voteOptions[0].innerHTML = `I think so<br />${Math.round(percent)}%`;
         voteOptions[1].innerHTML = `I doubt it<br />${Math.round(Math.abs(percent - 100))}%`;
 
-        var segmentedControl = document.querySelector('.segmented-control') as HTMLDivElement;
-        segmentedControl.className = 'segmented-control-results';
+        var segmentedControl = document.querySelector('.segmented-control');
+        if (segmentedControl) {
+            segmentedControl.className = 'segmented-control-results';
+        }
 
         document.getElementById('votes-collected').innerHTML = `${data.numVotes} votes collected`;
     });
