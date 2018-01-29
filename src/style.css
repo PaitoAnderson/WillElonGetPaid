@@ -20,6 +20,11 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+
+    -webkit-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+
+    width: 50%;
 }
 
 .segmented-control-input {
@@ -29,7 +34,7 @@
 
 .segmented-control-label {
     display: block;
-    margin: 0 -2px -2px 0; /* -1px margin removes double-thickness borders between items */
+    margin: 0 -2px -2px 0;
     padding: .25em .25em;
 
     border: 2px solid #DBDBDB;
@@ -58,15 +63,6 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-/*.segmented-control-label:hover {
-    background: #fafafa;
-}
-
-.segmented-control-input:checked + .segmented-control-label {
-    background: #eee;
-    color: #333; 
-}*/
 
 .segmented-control-results {
     display: table;

@@ -31,18 +31,21 @@ function vote(value: boolean) {
         value,
     })
     .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-
         // Get Vote Counts
         db.doc('votes/totals').get().then((totals) => {
 
             const data = totals.data();
             const percent = Math.abs(data.numVotesYes / data.numVotes) * 100;
 
-            console.log(percent);
+            const displayedPercentage = Math.min(Math.max(30, percent), 70);
+            (document.querySelector('.segmented-control-item.left') as HTMLDivElement).style.width = `${displayedPercentage}%`;
 
-            (document.querySelector('.segmented-control-item.left') as HTMLDivElement).style.width = `${percent}%`;
+            var voteOptions = document.getElementsByClassName('segmented-control-label') as HTMLCollectionOf<HTMLLabelElement>;
+            voteOptions[0].innerHTML = `I think so<br />${Math.round(percent)}%`;
+            voteOptions[1].innerHTML = `I doubt it<br />${Math.round(Math.abs(percent - 100))}%`;
 
+            var segmentedControl = document.querySelector('.segmented-control') as HTMLDivElement;
+            segmentedControl.className = 'segmented-control-results';
         });
     })
     .catch(function(error) {
@@ -60,12 +63,4 @@ function disableInputs() {
 function enableInputs() {
     (document.getElementById("option-1") as HTMLInputElement).disabled = false;
     (document.getElementById("option-2") as HTMLInputElement).disabled = false;
-}
-
-function removeByClassName(className: string) {
-    var x = document.getElementsByClassName(className);
-    var i;
-    for (i = x.length - 1; i >= 0; i--){
-        x[i].parentNode.removeChild(x[i]);
-    }
 }
